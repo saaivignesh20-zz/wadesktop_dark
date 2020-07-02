@@ -47,3 +47,12 @@ Finally, run the following command to execute the magical script:
 
 ![After](./img/after.png)
 
+## Licence
+
+This script is licensed under General Public Licence v3.
+
+## Feature Flag Unlockers
+
+For more feature flag unlockers like dark mode, you are welcome to contribute to the repository under a different branch. 
+
+If you have any idea regarding that, put a mail on saaivignesh20@gmail.com.
