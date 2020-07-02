@@ -121,21 +121,21 @@ function patchResource() {
 	packed_promise = asar.createPackage(asar_unpacked_path, asar_packed_path);
 	packed_promise.then( function(val) {
 		console.log("Packing done.".green);
-	});
 
-	// copy the file back again.
-	console.log("Replacing resource file with modified resource file...");
-	try {
-		fs.copyFileSync(asar_packed_path, asar_path);
-		console.log("Resources replaced successfully.".green)
-	} catch(err) {
-		console.log("E: Unable to replace resources. Check whether WhatsApp Desktop is properly closed.".red);
+		// copy the file back again.
+		console.log("Replacing resource file with modified resource file...");
+		try {
+			fs.copyFileSync(asar_packed_path, asar_path);
+			console.log("Resources replaced successfully.".green)
+		} catch(err) {
+			console.log("E: Unable to replace resources. Check whether WhatsApp Desktop is properly closed.".red);
+			cleanUpAndTerminate();
+		}
+		
+
+		console.log("\nEnjoy WhatsApp Dark Mode! Thanks for using this tool.\n".cyan);
 		cleanUpAndTerminate();
-	}
-	
-
-	console.log("\nEnjoy WhatsApp Dark Mode! Thanks for using this tool.\n".cyan);
-	cleanUpAndTerminate();
+	});
 }
 
 function cleanUpAndTerminate() {
