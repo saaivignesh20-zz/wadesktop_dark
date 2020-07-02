@@ -104,10 +104,11 @@ function patchResource() {
 	// find whether DARK_MODE flag exists and replace flag.
 	if (rendererjs.includes("DARK_MODE: true")) {
 		console.log("Resource file is already patched.".green);
-		cleanUpAndTerminate();
+		cleanUpAndTerminate(true);
 	} else if (rendererjs.includes("DARK_MODE:")) {
 		console.log("Finding flags for enforcing dark mode...");
 		rendererjs = rendererjs.replace(/^.*DARK_MODE:.*$/mg, "  DARK_MODE: true,");
+		fs.copyFileSync(path.join(__dirname, "asar_workdir", "backups", "app.asar"), path.join(__dirname, "asar_workdir", "backups", "original_app.asar"));
 		fs.writeFileSync(rendererjs_path, rendererjs);
 		console.log("File patched to force enable dark mode.".green);
 	} else {
@@ -138,11 +139,17 @@ function patchResource() {
 	});
 }
 
-function cleanUpAndTerminate() {
+function cleanUpAndTerminate(removeBackupResource = false) {
 	console.log("Cleaning up...")
 	fs.rmdirSync(path.join(__dirname, "asar_workdir", "unpacked"), { recursive: true });
+	if (removeBackupResource) {
+		fs.unlinkSync(path.join(__dirname, "asar_workdir", "backups", "app.asar"));
+		console.log("Deleted backup file since no changes are done.".yellow);
+	}	
 	fs.rmdirSync(path.join(__dirname, "asar_workdir", "packed"), { recursive: true });
-	console.log("Temporary files cleaned.".green)
-	console.log("\nThe backup resource file is kept inside asar_workdir/backups.\n".yellow);
+	console.log("Temporary files cleaned.\n".green)
+	if (!removeBackupResource) {
+		console.log("The backup resource file is kept inside asar_workdir/backups.\n".yellow);
+	}
 	process.exit();
 }
