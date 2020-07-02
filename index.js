@@ -108,9 +108,9 @@ function patchResource() {
 	} else if (rendererjs.includes("DARK_MODE:")) {
 		console.log("Finding flags for enforcing dark mode...");
 		rendererjs = rendererjs.replace(/^.*DARK_MODE:.*$/mg, "  DARK_MODE: true,");
-		fs.copyFileSync(path.join(__dirname, "asar_workdir", "backups", "app.asar"), path.join(__dirname, "asar_workdir", "backups", "original_app.asar"));
 		fs.writeFileSync(rendererjs_path, rendererjs);
 		console.log("File patched to force enable dark mode.".green);
+		fs.renameSync(path.join(__dirname, "asar_workdir", "backups", "app.asar"), path.join(__dirname, "asar_workdir", "backups", "original_app.asar"));
 	} else {
 		console.log("E: DARK_MODE flag doesn't exist! Unknown error.".red);
 		cleanUpAndTerminate();
