@@ -1,7 +1,7 @@
 
 # wadesktop_dark
 
-A magical tool which can unlock the hidden dark mode in WhatsApp Desktop. This objective of this script is to help geeky and interested people around the world to experience the upcoming official dark mode feature before it's stable rollout.
+A simple tool which can unlock the hidden dark mode in WhatsApp Desktop. This objective of this script is to help geeky and interested people around the world to experience the upcoming official dark mode feature before it's stable rollout.
 
 ## Disclaimer
 
@@ -35,7 +35,7 @@ Clone the repository by using:
 Go into the repository directory and type the following to install dependencies:
 
     npm install
-Finally, run the following command to execute the magical script:
+Finally, run the following command to execute the script:
 
     node index.js
 **Enjoy the dark mode in WhatsApp Desktop App before official rollout!**
