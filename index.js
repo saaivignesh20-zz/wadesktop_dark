@@ -36,24 +36,24 @@ fs.exists(wapp_path, function (exists) {
 				console.log("E: Entered path is not a directory.\n".red);
 				cleanUpAndTerminate();
 			} else {
-                // find app-xxx folder
-                app_dir = "";
+				// find app-xxx folder
+				app_dir = "";
 				files = fs.readdirSync(wapp_path);
-				files.forEach(function(file) {
-                    if (file.includes("app-")) {
-                        // this must be the folder unless tampering is done already
-                        app_dir = file;
-                        return;
-                    }
-                });
+				files.forEach(function (file) {
+					if (file.includes("app-")) {
+						// this must be the folder unless tampering is done already
+						app_dir = file;
+						return;
+					}
+				});
 
-                // get resources/app.asar path
-                asar_path = path.join(wapp_path, app_dir, "resources", "app.asar");
+				// get resources/app.asar path
+				asar_path = path.join(wapp_path, app_dir, "resources", "app.asar");
 
 				// check if working directories exists
 				checkWorkingDirectories(patchResource);
 			}
-		} 
+		}
 	}
 });
 
@@ -100,7 +100,7 @@ function patchResource() {
 	// load renderer.js
 	rendererjs_path = path.join(__dirname, "asar_workdir", "unpacked", "renderer.js");
 	rendererjs = fs.readFileSync(rendererjs_path, 'utf-8');
-	
+
 	// find whether DARK_MODE flag exists and replace flag.
 	if (rendererjs.includes("DARK_MODE: true")) {
 		console.log("Resource file is already patched.".green);
@@ -120,7 +120,7 @@ function patchResource() {
 	console.log("Packing resource file with modifications...");
 	asar_packed_path = path.join(__dirname, "asar_workdir", "packed", "app.asar");
 	packed_promise = asar.createPackage(asar_unpacked_path, asar_packed_path);
-	packed_promise.then( function(val) {
+	packed_promise.then(function (val) {
 		console.log("Packing done.".green);
 
 		// copy the file back again.
@@ -128,11 +128,11 @@ function patchResource() {
 		try {
 			fs.copyFileSync(asar_packed_path, asar_path);
 			console.log("Resources replaced successfully.".green)
-		} catch(err) {
+		} catch (err) {
 			console.log("E: Unable to replace resources. Check whether WhatsApp Desktop is properly closed.".red);
 			cleanUpAndTerminate();
 		}
-		
+
 
 		console.log("\nEnjoy WhatsApp Dark Mode! Thanks for using this tool.\n".cyan);
 		cleanUpAndTerminate();
@@ -145,7 +145,7 @@ function cleanUpAndTerminate(removeBackupResource = false) {
 	if (removeBackupResource) {
 		fs.unlinkSync(path.join(__dirname, "asar_workdir", "backups", "app.asar"));
 		console.log("Deleted backup file since no changes are done.".yellow);
-	}	
+	}
 	fs.rmdirSync(path.join(__dirname, "asar_workdir", "packed"), { recursive: true });
 	console.log("Temporary files cleaned.\n".green)
 	if (!removeBackupResource) {
