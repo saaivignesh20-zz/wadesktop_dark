@@ -40,7 +40,7 @@ Finally, run the following command to execute the script:
     node index.js
 After executing the script, do the following steps:
 
-1. Open WhatsApp
+1. Open WhatsApp Desktop.
 2. Click the three dots.
 3. Go to Settings > Theme.
 4. Choose Dark and click OK.
