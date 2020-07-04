@@ -38,6 +38,13 @@ Go into the repository directory and type the following to install dependencies:
 Finally, run the following command to execute the script:
 
     node index.js
+After executing the script, do the following steps:
+
+1. Open WhatsApp
+2. Click the three dots.
+3. Go to Settings > Theme.
+4. Choose Dark and click OK.
+
 **Enjoy the dark mode in WhatsApp Desktop App before official rollout!**
 
 
