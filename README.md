@@ -5,6 +5,8 @@ A simple tool which can unlock the hidden dark mode in WhatsApp Desktop. This ob
  
 **EDIT:** WhatsApp has rolled out Dark Mode in versions 2.2025.8 and above. It is already available on **WhatsApp Web.** But not WhatsApp Desktop. It will be rolled out very soon.
 
+**EDIT:** WhatsApp has rolled out Dark Mode to WhatsApp Desktop a few weeks ago.
+
 ## Disclaimer
 
  - This script does not tamper with the natural working of the WhatsApp application. Since it is build using open-source software, this script just unlocks the upcoming feature by forcing the feature flags inside the application's settings.
